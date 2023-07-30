@@ -12,7 +12,10 @@ const loadNextPage = async () => {
     state.users = users;
 };
 const loadPreviusPage = async () => {
-    throw new Error("No implimentado");
+    if (state.currentPage === 1) return;
+    const users = await loadUsersByPage(state.currentPage - 1);
+    state.users = users;
+    state.currentPage -= 1;
 };
 const onUserChanged = async () => {
     throw new Error("No implimentado");
