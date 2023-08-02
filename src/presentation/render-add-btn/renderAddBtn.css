@@ -1,5 +1,5 @@
 .fab-Btn {
-	position: fixed;
-	bottom: 50px;
-	right: 50px;
+	position: relative;
+	bottom: 0px;
+	right: 0px;
 }

@@ -3,6 +3,7 @@ import "./renderAddBtn.css";
 /**
  *
  * @param {HTMLDivElement} element
+ * @param { () => void } callback
  */
 export const renderAddBtn = (element) => {
     const fabBtn = document.createElement("button");
