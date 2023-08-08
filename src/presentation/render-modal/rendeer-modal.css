@@ -38,11 +38,10 @@ form {
 input {
 	margin-bottom: 10px;
 	padding: 5px;
-	background-color: gray;
 	width: 90%;
 }
 
 span,
 label {
-	color: darkslateblue;
+	color: #000;
 }
