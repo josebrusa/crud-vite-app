@@ -1,5 +1,5 @@
-import { localhostUserToModel } from "../mappers/localhost-user.mapper";
-import { User } from "../models/user";
+import {localhostUserToModel} from "../mappers/localhost-user.mapper";
+import {User} from "../models/user";
 
 /**
  *
@@ -11,9 +11,7 @@ export const loadUsersByPage = async (page = 1) => {
     const res = await fetch(url);
     const data = await res.json();
 
-    const users = data.map((user) => {
-        return localhostUserToModel(user);
-    });
+    const users = data.map(localhostUserToModel);
 
     return users;
 };

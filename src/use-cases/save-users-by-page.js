@@ -1,3 +1,4 @@
+import {userModelToLocalhost} from "../mappers/user-to-localhost.mapper";
 import {User} from "../models/user";
 /**
  *
@@ -5,15 +6,14 @@ import {User} from "../models/user";
  */
 export const saveUser = async (userLike) => {
     const user = new User(userLike);
-
-    //TODO: aqui implementar mapper
+    const userToSave = userModelToLocalhost(user);
 
     if (user.id) {
         throw "No implementada la actualizacion";
         return;
     }
 
-    const updatedUser = await createUser(user);
+    const updatedUser = await createUser(userToSave);
     return updatedUser;
 };
 
@@ -26,10 +26,11 @@ const createUser = async (user) => {
         method: "POST",
         body: JSON.stringify(user),
         headers: {
-            "Content-Type": "application/json;charset=utf8;",
+            "Content-Type": "application/json",
         },
     });
 
-    const newUsesr = await res.json();
-    return newUsesr;
+    const newUser = await res.json();
+    console.log(newUser);
+    return newUser;
 };
