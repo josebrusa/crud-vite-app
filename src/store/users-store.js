@@ -11,17 +11,39 @@ const loadNextPage = async () => {
     state.currentPage += 1;
     state.users = users;
 };
+
 const loadPreviusPage = async () => {
     if (state.currentPage === 1) return;
     const users = await loadUsersByPage(state.currentPage - 1);
     state.users = users;
     state.currentPage -= 1;
 };
-const onUserChanged = async () => {
-    throw new Error("No implimentado");
+
+/**
+ *
+ * @param {User} updatedUser
+ */
+const onUserChanged = async (updatedUser) => {
+    let wasFound = false;
+    state.users = state.users.map((user) => {
+        if (user.id === updatedUser.id) {
+            wasFound = true;
+            return updatedUser;
+        }
+        return user;
+    });
+
+    if (state.users.length < 10 && !wasFound) {
+        state.users.push(updatedUser);
+    }
 };
 const reloadPage = async () => {
-    throw new Error("No implimentado");
+    const users = await loadUsersByPage(state.currentPage);
+    if (users.length === 0) {
+        await loadPreviusPage();
+        return;
+    }
+    state.users = users;
 };
 
 export default {
